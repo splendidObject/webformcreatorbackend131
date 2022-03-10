@@ -1,0 +1,22 @@
+{
+  "name": "webformcreator-server",
+  "version": "1.0.0",
+  "description": "A REST backend for team Alpha (Stinger Softworks) Spring 2022 CSC 131. ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seancodegod/WebFormCreator.git"
+  },
+  "author": "Stinger Softworks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seancodegod/WebFormCreator/issues"
+  },
+  "homepage": "https://github.com/seancodegod/WebFormCreator#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
