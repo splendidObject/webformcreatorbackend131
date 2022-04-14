@@ -9,7 +9,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 
 // Logging
 const morgan = require('morgan');
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 
 //MONGO - database
 const mongoose = require('mongoose');
@@ -33,5 +33,5 @@ app.get('*', (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
+  console.log(`Webform API listenin on PORT: ${PORT}`)
 });
