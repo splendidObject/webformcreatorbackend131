@@ -13,8 +13,8 @@ app.use(morgan('tiny'));
 
 //MONGO - database
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017');
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect('mongodb://localhost:27017');
+//mongoose.connect(process.env.MONGODB_URI)
 
 
 
@@ -27,11 +27,11 @@ app.get('/', (req, res) => {
 });
 
 //Redirect any malformed URL
-app.get('*', (req, res) => {
-  res.redirect('/');
-})
+// app.get('*', (req, res) => {
+//   res.redirect('/');
+// });
 
 
 app.listen(PORT, () => {
-  console.log(`Webform API listenin on PORT: ${PORT}`)
+  console.log(`Webform API on PORT: ${PORT}`)
 });

@@ -4,6 +4,8 @@ const User = require('../models/userSchema');
 
 
 // USER ROUTES
+
+//Create new user
 router.post('/create/', async (req, res) => {
 
       var newUser = new User({
@@ -30,6 +32,28 @@ router.post('/create/', async (req, res) => {
 
 });
 
+
+//Get user by ID
+router.get('/:id/', async (req, res) => {
+      var user = await User.findById(req.params.id);
+      res.send(user);
+});
+
+//Add Webform to user
+
+router.post('/addactive/', async (req,res) => {
+      
+      var user = await User.findById(req.body.authorid);
+      await user.forms.active.push(req.body.webformid);
+      await user.save();
+      res.send("success");
+      
+});
+
+
+
+
+//test routes
 router.get('/test/', (req, res) => {
       res.send('Works');
 });
