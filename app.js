@@ -8,8 +8,8 @@ const bodyparser = require('body-parser');
 app.use(bodyparser.urlencoded({extended: true}));
 
 // Logging
-const morgan = require('morgan');
-app.use(morgan('dev'));
+// const morgan = require('morgan');
+// app.use(morgan('dev'));
 
 //MONGO - database
 const mongoose = require('mongoose');
