@@ -14,9 +14,7 @@ app.use(bodyparser.urlencoded({extended: true}));
 //MONGO - database
 const mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost:27017');
-
-mongoose.connect('mongodb+srv://lincoln:s6g8dyS9Gej@cluster0.waqgd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
-
+mongoose.connect(process.env.MONGODB_URI)
 
 
 
