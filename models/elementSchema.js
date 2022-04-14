@@ -13,4 +13,4 @@ var elementSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('element', messageSchema);
+module.exports = mongoose.model('element', elementSchema);
