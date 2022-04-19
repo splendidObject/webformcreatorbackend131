@@ -42,14 +42,26 @@ router.get('/:id/', async (req, res) => {
 //Add Webform to user
 
 router.post('/addactive/', async (req,res) => {
-      
       var user = await User.findById(req.body.authorid);
       await user.forms.active.push(req.body.webformid);
       await user.save();
       res.send("success");
-      
 });
 
+router.post('/addinactive/', async (req,res) => {
+      var user = await User.findById(req.body.authorid);
+      await user.forms.inactive.push(req.body.webformid);
+      await user.save();
+      res.send("success");   
+});
+
+router.post('/adddraft/', async (req,res) => {
+      
+      var user = await User.findById(req.body.authorid);
+      await user.forms.drafts.push(req.body.webformid);
+      await user.save();
+      res.send("success");
+});
 
 
 
