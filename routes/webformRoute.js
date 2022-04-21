@@ -15,11 +15,19 @@ router.post('/create/', async (req, res) => {
             expiresOn: new Date(Date.now() + 2629746000),
             title: req.body.title,
             body: req.body.body,
-            isActive: req.body.isActive,
-            formStatus: req.body.status
+            isActive: req.body.isActive
       });
 
       await Webform.create(newWebform);
+
+      await User.findOneAndUpdate(
+            { _id: req.body.author },
+            {
+                  $push: { [`forms.${req.body.formType}`]: newWebform._id }
+            },
+            { safe: true, multi: false });
+
+      
       res.send("success");
 
 });
