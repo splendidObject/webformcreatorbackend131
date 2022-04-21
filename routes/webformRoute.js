@@ -15,7 +15,8 @@ router.post('/create/', async (req, res) => {
             expiresOn: new Date(Date.now() + 2629746000),
             title: req.body.title,
             body: req.body.body,
-            isActive: req.body.isActive
+            isActive: req.body.isActive,
+            formStatus: req.body.status
       });
 
       await Webform.create(newWebform);

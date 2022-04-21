@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/userSchema');
-
+const Webform = require('../models/webformSchema');
 
 // USER ROUTES
 
@@ -40,29 +40,51 @@ router.get('/:id/', async (req, res) => {
 });
 
 //Add Webform to user
+router.post('/addform/', async (req, res) => {
 
-router.post('/addactive/', async (req,res) => {
       var user = await User.findById(req.body.authorid);
-      await user.forms.active.push(req.body.webformid);
-      await user.save();
-      res.send("success");
+
+      switch (req.body.formtype) {
+            case "active":
+                  await user.forms.active.push(req.body.webformid);
+                  await user.save();
+                  res.send("success");
+                  break;
+            case "inactive":
+                  await user.forms.inactive.push(req.body.webformid);
+                  await user.save();
+                  res.send("success");
+                  break;
+            case "drafts":
+                  await user.forms.drafts.push(req.body.webformid);
+                  await user.save();
+                  res.send("success");
+                  break;
+            default:
+                  res.send("type error");
+                  break;
+
+      }
+
+
 });
 
-router.post('/addinactive/', async (req,res) => {
-      var user = await User.findById(req.body.authorid);
-      await user.forms.inactive.push(req.body.webformid);
-      await user.save();
-      res.send("success");   
-});
 
-router.post('/adddraft/', async (req,res) => {
-      
-      var user = await User.findById(req.body.authorid);
-      await user.forms.drafts.push(req.body.webformid);
-      await user.save();
-      res.send("success");
-});
+router.post('/moveform/', async (req, res) => {
+      var userid = req.body.userid;
+      var oldstatus = req.body.oldstatus;
+      var newstatus = req.body.newstatus;
 
+      await User.findOneAndUpdate(
+            { _id: userid },
+            {
+                  $pull: { [`forms.${oldstatus}`]: { $in: webformid } },
+                  $push: { [`forms.${newstatus}`]: webformid }
+            },
+            { safe: true, multi: false });
+
+      res.send(req.body);
+});
 
 
 //test routes
@@ -74,6 +96,12 @@ router.post('/test/', (req, res) => {
 
       res.send(req.body);
 });
+
+
+
+
+
+
 
 
 
