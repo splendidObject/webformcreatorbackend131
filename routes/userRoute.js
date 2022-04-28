@@ -28,7 +28,7 @@ router.post('/create/', async (req, res) => {
       });
 
       await User.create(newUser);
-      res.send("success");
+      res.send(newUser._id);
 
 });
 

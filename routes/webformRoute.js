@@ -28,7 +28,7 @@ router.post('/create/', async (req, res) => {
             { safe: true, multi: false });
 
       
-      res.send("success");
+      res.send(newWebform._id);
 
 });
 
