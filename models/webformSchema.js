@@ -9,7 +9,8 @@ var webformSchema = new Schema({
     title: String,
     body: String,
     isActive: Boolean,
-    elements: [{type: Schema.Types.ObjectId, ref :'element'}]
+    elements: [{type: Schema.Types.ObjectId, ref :'element'}],
+    responses: [{type: Schema.Types.ObjectId, ref : 'response'}]
 
 });
 

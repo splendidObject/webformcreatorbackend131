@@ -3,9 +3,9 @@ var router = express.Router();
 const User = require('../models/userSchema');
 const Webform = require('../models/webformSchema');
 const Element = require('../models/elementSchema');
+const Response = require('../models/responseSchema');
 
 // WEBFORM ROUTES
-
 router.post('/create/', async (req, res) => {
 
       var newWebform = new Webform({
@@ -29,9 +29,9 @@ router.post('/create/', async (req, res) => {
 
             await Element.create(newElement);
 
-            console.log(newElement._id);
 
             await Webform.findOneAndUpdate(
+
                   { _id: newWebform._id },
                   {
                         $push: { [`elements`]: newElement._id }
@@ -43,6 +43,7 @@ router.post('/create/', async (req, res) => {
       );
 
       await User.findOneAndUpdate(
+
             { _id: req.body.author },
             {
                   $push: { [`forms.${req.body.formType}`]: newWebform._id }
@@ -60,10 +61,27 @@ router.get('/:id/', async (req, res) => {
       res.send(user);
 });
 
+//Responses
+router.post('/:id/submit', async (req, res) =>{
+      var newResponse = new Webform({
+            webform: req.body.author,
+            response: String
+      });
+
+      await Response.findOneAndUpdate(
+
+            { _id: req.body.webform },
+            {
+                  $push: { [`responses`]: newResponse._id }
+            },
+            { safe: true, multi: false });
+
+      res.send(newResponse._id);
+
+});
+
 
 //Elements
-
-
 router.post('/newelement/', async (req, res) => {
 
       var newElement = new Element({
@@ -73,7 +91,6 @@ router.post('/newelement/', async (req, res) => {
       });
 
       await Element.create(newElement);
-
 
       res.send(newElement._id);
 
