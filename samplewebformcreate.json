@@ -1,0 +1,17 @@
+{
+    "author": "62589fb0b40ed680c2b62168", 
+    "title": "This is the title",
+    "body": "This is the description body",
+    "elements": [
+        {
+            "label": "Label Text",
+            "inputType": "InputType",
+            "isRequired": "true"
+        },
+        {
+            "label": "Label Text 2",
+            "inputType": "InputType",
+            "isRequired": "true"
+        }
+    ]
+}

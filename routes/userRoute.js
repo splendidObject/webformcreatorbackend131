@@ -35,7 +35,7 @@ router.post('/create/', async (req, res) => {
 
 //Get user by ID
 router.get('/:id/', async (req, res) => {
-      var user = await User.findById(req.params.id);
+      var user = await User.findById(req.params.id).populate('forms.active').populate('forms.inactive').populate('forms.drafts');
       res.send(user);
 });
 
