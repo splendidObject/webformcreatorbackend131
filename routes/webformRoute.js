@@ -7,8 +7,11 @@ const Element = require('../models/elementSchema');
 // WEBFORM ROUTES
 
 router.post('/create/', async (req, res) => {
+
       
+
       var newWebform = new Webform({
+            console.log(req.body);
             author: req.body.author,
             createdOn: Date.now(),
             //need iso date info from front end for expiresOn
@@ -42,19 +45,11 @@ router.get('/:id/', async (req, res) => {
 //Elements
 
 router.post('/newelement/', async (req, res) => {
-      console.log(req.body);
-      console.log(Date.now());
+
       var newElement = new Element({
             label: req.body.label,
             inputType: req.body.inputType,
-            isRequired: req.body.isRequired,
-            checkbox: req.body.checkbox,
-            date: req.body.date,
-            email: req.body.email,
-            number: req.body.number,
-            password: req.body.password,
-            url: req.body.url,
-            text: req.body.text
+            isRequired: req.body.isRequired
       });
 
       await Element.create(newElement);
