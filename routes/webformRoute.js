@@ -34,7 +34,7 @@ router.post('/create/', async (req, res) => {
 
 //Get webform by ID
 router.get('/:id/', async (req, res) => {
-      var user = await Webform.findById(req.params.id);
+      var user = await Webform.findById(req.params.id).populate('elements');
       res.send(user);
 });
 
