@@ -7,11 +7,11 @@ const Element = require('../models/elementSchema');
 // WEBFORM ROUTES
 
 router.post('/create/', async (req, res) => {
-
+      console.log(req.body);
       
 
       var newWebform = new Webform({
-            console.log(req.body);
+           
             author: req.body.author,
             createdOn: Date.now(),
             //need iso date info from front end for expiresOn
