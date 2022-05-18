@@ -1,17 +1,31 @@
 {
-    "author": "62589fb0b40ed680c2b62168", 
-    "title": "This is the title",
-    "body": "This is the description body",
+    "author": "62589fb0b40ed680c2b62168",
+    "title": "Title",
+    "body": "Description",
     "elements": [
         {
-            "label": "Label Text",
-            "inputType": "InputType",
-            "isRequired": "true"
+            "fieldId": 1,
+            "label": "text",
+            "type": "text",
+            "isRequired": false
         },
         {
-            "label": "Label Text 2",
-            "inputType": "InputType",
-            "isRequired": "true"
+            "fieldId": 2,
+            "label": "checkbox",
+            "type": "checkbox",
+            "isRequired": false
+        },
+        {
+            "fieldId": 3,
+            "label": "date",
+            "type": "date",
+            "isRequired": false
+        },
+        {
+            "fieldId": 4,
+            "label": "email",
+            "type": "email",
+            "isRequired": false
         }
     ]
 }

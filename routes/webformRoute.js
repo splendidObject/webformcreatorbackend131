@@ -7,21 +7,40 @@ const Element = require('../models/elementSchema');
 // WEBFORM ROUTES
 
 router.post('/create/', async (req, res) => {
-      console.log(req.body);
-      
 
       var newWebform = new Webform({
-           
             author: req.body.author,
             createdOn: Date.now(),
-            //need iso date info from front end for expiresOn
-            expiresOn: new Date(Date.now() + 2629746000),
             title: req.body.title,
             body: req.body.body,
             isActive: req.body.isActive
       });
 
       await Webform.create(newWebform);
+
+      req.body.elements.forEach(async (element) => {
+
+            var newElement = new Element({
+                  label: element.label,
+                  inputType: element.inputType,
+                  isRequired: element.isRequired,
+                  fieldId: element.fieldId
+            });
+
+            await Element.create(newElement);
+
+            console.log(newElement._id);
+
+            await Webform.findOneAndUpdate(
+                  { _id: newWebform._id },
+                  {
+                        $push: { [`elements`]: newElement._id }
+                  },
+                  { safe: true, multi: false });
+
+      }
+
+      );
 
       await User.findOneAndUpdate(
             { _id: req.body.author },
@@ -30,7 +49,7 @@ router.post('/create/', async (req, res) => {
             },
             { safe: true, multi: false });
 
-      
+
       res.send(newWebform._id);
 
 });
@@ -44,6 +63,7 @@ router.get('/:id/', async (req, res) => {
 
 //Elements
 
+
 router.post('/newelement/', async (req, res) => {
 
       var newElement = new Element({
@@ -54,7 +74,7 @@ router.post('/newelement/', async (req, res) => {
 
       await Element.create(newElement);
 
-      
+
       res.send(newElement._id);
 
 });
