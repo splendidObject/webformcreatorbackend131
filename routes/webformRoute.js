@@ -39,7 +39,30 @@ router.get('/:id/', async (req, res) => {
 });
 
 
+//Elements
 
+router.post('/newelement/', async (req, res) => {
+      console.log(req.body);
+      console.log(Date.now());
+      var newElement = new Element({
+            label: req.body.label,
+            inputType: req.body.inputType,
+            isRequired: req.body.isRequired,
+            checkbox: req.body.checkbox,
+            date: req.body.date,
+            email: req.body.email,
+            number: req.body.number,
+            password: req.body.password,
+            url: req.body.url,
+            text: req.body.text
+      });
+
+      await Element.create(newElement);
+
+      
+      res.send(newElement._id);
+
+});
 
 
 module.exports = router;
