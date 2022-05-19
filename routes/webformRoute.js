@@ -65,12 +65,11 @@ router.get('/:id/', async (req, res) => {
 router.post('/:id/submit', async (req, res) =>{
 
       console.log(req.body);
-
       
 
       var newResponse = new Response({
             webform: req.params.id,
-            response: req.body
+            response: req.body.response
       });
 
       await Response.create(newResponse);
