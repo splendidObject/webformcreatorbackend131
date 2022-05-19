@@ -64,9 +64,11 @@ router.get('/:id/', async (req, res) => {
 //Responses
 router.post('/:id/submit', async (req, res) =>{
       var newResponse = new Webform({
-            webform: req.body.author,
+            webform: req.body.webform,
             response: String
       });
+
+      await Response.create(newResponse);
 
       await Response.findOneAndUpdate(
 
