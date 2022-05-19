@@ -12,7 +12,7 @@ const corsOptions = {
 //BODYPARSER- Request parsing
 const bodyparser = require('body-parser');
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended: false}));
+
 
 
 // Logging
