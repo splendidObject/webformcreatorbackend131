@@ -66,11 +66,11 @@ router.post('/:id/submit', async (req, res) =>{
 
       console.log(req.body);
 
-      var reqstring = JSON.stringify(req.body.response);
+      
 
       var newResponse = new Response({
             webform: req.params.id,
-            response: reqstring
+            response: req.body
       });
 
       await Response.create(newResponse);
