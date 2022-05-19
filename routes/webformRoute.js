@@ -63,16 +63,19 @@ router.get('/:id/', async (req, res) => {
 
 //Responses
 router.post('/:id/submit', async (req, res) =>{
-      var newResponse = new Webform({
-            webform: req.body.webform,
+
+      console.log(req.body);
+
+      var newResponse = new Response({
+            webform: req.params.id,
             response: req.body.response
       });
 
       await Response.create(newResponse);
 
-      await Response.findOneAndUpdate(
+      await Webform.findOneAndUpdate(
 
-            { _id: req.body.webform },
+            { _id: req.params.id },
             {
                   $push: { [`responses`]: newResponse._id }
             },
